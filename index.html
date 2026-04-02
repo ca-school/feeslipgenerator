@@ -14,16 +14,15 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/jpeg" href="https://raw.githubusercontent.com/ca-school/feeslipgenerator/refs/heads/main/WhatsApp%20Image%202026-03-28%20at%201.02.14%20PM.jpeg">
-    <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/ca-school/feeslipgenerator/refs/heads/main/WhatsApp%20Image%202026-03-28%20at%201.02.14%20PM.jpeg">
+    <link rel="apple-touch-icon" id="apple-icon" href="https://raw.githubusercontent.com/ca-school/feeslipgenerator/refs/heads/main/WhatsApp%20Image%202026-03-28%20at%201.02.14%20PM.jpeg">
 
-    <!-- Manifest for PWA -->
+    <!-- Manifest (will be set dynamically) -->
     <link rel="manifest" id="manifest-link">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        /* ========== RESET & BASE ========== */
         * {
             margin: 0;
             padding: 0;
@@ -53,7 +52,6 @@
             overflow: hidden;
         }
 
-        /* Animated Gradient Background */
         .splash-bg {
             position: absolute;
             top: 0;
@@ -71,7 +69,6 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Particle System */
         .particles {
             position: absolute;
             top: 0;
@@ -113,23 +110,12 @@
         .particle:nth-child(20) { left: 48%; animation-duration: 7s; animation-delay: 3.8s; width: 5px; height: 5px; }
 
         @keyframes floatUp {
-            0% {
-                transform: translateY(100vh) scale(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 0.5;
-            }
-            100% {
-                transform: translateY(-10vh) scale(1);
-                opacity: 0;
-            }
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 0.5; }
+            100% { transform: translateY(-10vh) scale(1); opacity: 0; }
         }
 
-        /* Glowing Rings */
         .glow-rings {
             position: absolute;
             z-index: 2;
@@ -151,19 +137,10 @@
         .ring:nth-child(4) { width: 500px; height: 500px; animation-delay: 1.5s; }
 
         @keyframes ringPulse {
-            0%, 100% {
-                transform: translate(-50%, -50%) scale(0.8);
-                opacity: 0;
-                border-color: rgba(100, 200, 255, 0.05);
-            }
-            50% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 1;
-                border-color: rgba(100, 200, 255, 0.2);
-            }
+            0%, 100% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; border-color: rgba(100, 200, 255, 0.05); }
+            50% { transform: translate(-50%, -50%) scale(1); opacity: 1; border-color: rgba(100, 200, 255, 0.2); }
         }
 
-        /* Main Splash Content */
         .splash-content {
             position: relative;
             z-index: 10;
@@ -175,7 +152,6 @@
             padding: 20px;
         }
 
-        /* Logo Container */
         .logo-container {
             position: relative;
             margin-bottom: 30px;
@@ -185,14 +161,8 @@
         }
 
         @keyframes logoEntry {
-            0% {
-                opacity: 0;
-                transform: scale(0) rotate(-180deg);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1) rotate(0deg);
-            }
+            0% { opacity: 0; transform: scale(0) rotate(-180deg); }
+            100% { opacity: 1; transform: scale(1) rotate(0deg); }
         }
 
         .logo-glow {
@@ -207,14 +177,8 @@
         }
 
         @keyframes glowPulse {
-            0%, 100% {
-                transform: scale(1);
-                opacity: 0.5;
-            }
-            50% {
-                transform: scale(1.2);
-                opacity: 1;
-            }
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 1; }
         }
 
         .logo-border {
@@ -242,7 +206,6 @@
             border: 3px solid #1a1a2e;
         }
 
-        /* Orbiting dots around logo */
         .orbit {
             position: absolute;
             top: 50%;
@@ -271,7 +234,6 @@
             to { transform: rotate(360deg); }
         }
 
-        /* App Title */
         .app-title {
             animation: titleSlideUp 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.5s forwards;
             opacity: 0;
@@ -279,10 +241,7 @@
         }
 
         @keyframes titleSlideUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .title-main {
@@ -318,7 +277,6 @@
             to { width: 200px; }
         }
 
-        /* Powered By Section */
         .powered-by {
             animation: fadeInUp 0.8s ease-out 1.3s forwards;
             opacity: 0;
@@ -326,10 +284,7 @@
         }
 
         @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .powered-label {
@@ -360,7 +315,6 @@
             margin-top: 4px;
         }
 
-        /* Loading Bar */
         .loading-section {
             position: absolute;
             bottom: 80px;
@@ -406,7 +360,6 @@
             100% { width: 100%; }
         }
 
-        /* Splash dots animation */
         .loading-dots {
             display: inline-flex;
             gap: 4px;
@@ -429,7 +382,6 @@
             40% { transform: scale(1.2); opacity: 1; }
         }
 
-        /* Version text at bottom */
         .version-text {
             position: absolute;
             bottom: 30px;
@@ -443,27 +395,17 @@
             opacity: 0;
         }
 
-        /* Splash Exit Animation */
         .splash-exit {
             animation: splashExit 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
         }
 
         @keyframes splashExit {
-            0% {
-                opacity: 1;
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-            100% {
-                opacity: 0;
-                transform: scale(0.9);
-                visibility: hidden;
-            }
+            0% { opacity: 1; transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { opacity: 0; transform: scale(0.9); visibility: hidden; }
         }
 
-        /* ========== MAIN APP (IFRAME) ========== */
+        /* ========== MAIN APP ========== */
         #app-container {
             width: 100%;
             height: 100%;
@@ -477,14 +419,8 @@
         }
 
         @keyframes appFadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         #app-iframe {
@@ -581,70 +517,36 @@
             line-height: 1;
         }
 
-        /* Responsive */
         @media (max-width: 400px) {
-            .title-main {
-                font-size: 32px;
-                letter-spacing: 4px;
-            }
-            .academy-name {
-                font-size: 15px;
-                letter-spacing: 2px;
-            }
-            .logo-border {
-                width: 110px;
-                height: 110px;
-            }
-            .orbit {
-                width: 150px;
-                height: 150px;
-                margin-top: -75px;
-                margin-left: -75px;
-            }
+            .title-main { font-size: 32px; letter-spacing: 4px; }
+            .academy-name { font-size: 15px; letter-spacing: 2px; }
+            .logo-border { width: 110px; height: 110px; }
+            .orbit { width: 150px; height: 150px; margin-top: -75px; margin-left: -75px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ========== SPLASH SCREEN ========== -->
+    <!-- SPLASH SCREEN -->
     <div id="splash-screen">
         <div class="splash-bg"></div>
-
-        <!-- Particles -->
         <div class="particles">
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
+            <div class="particle"></div><div class="particle"></div>
+            <div class="particle"></div><div class="particle"></div>
+            <div class="particle"></div><div class="particle"></div>
+            <div class="particle"></div><div class="particle"></div>
+            <div class="particle"></div><div class="particle"></div>
+            <div class="particle"></div><div class="particle"></div>
+            <div class="particle"></div><div class="particle"></div>
+            <div class="particle"></div><div class="particle"></div>
+            <div class="particle"></div><div class="particle"></div>
+            <div class="particle"></div><div class="particle"></div>
         </div>
-
-        <!-- Glow Rings -->
         <div class="glow-rings">
-            <div class="ring"></div>
-            <div class="ring"></div>
-            <div class="ring"></div>
-            <div class="ring"></div>
+            <div class="ring"></div><div class="ring"></div>
+            <div class="ring"></div><div class="ring"></div>
         </div>
-
-        <!-- Main Content -->
         <div class="splash-content">
-            <!-- Logo -->
             <div class="logo-container">
                 <div class="logo-glow"></div>
                 <div class="orbit">
@@ -655,24 +557,16 @@
                     <img class="logo-img" src="https://raw.githubusercontent.com/ca-school/feeslipgenerator/refs/heads/main/WhatsApp%20Image%202026-03-28%20at%201.02.14%20PM.jpeg" alt="Logo">
                 </div>
             </div>
-
-            <!-- Title -->
             <div class="app-title">
                 <div class="title-main">Slip Generator</div>
             </div>
-
-            <!-- Divider -->
             <div class="title-divider"></div>
-
-            <!-- Powered By -->
             <div class="powered-by">
                 <div class="powered-label">Powered By</div>
                 <div class="academy-name">Chanakya Academy</div>
                 <div class="location-name">Ranjita</div>
             </div>
         </div>
-
-        <!-- Loading -->
         <div class="loading-section">
             <div class="loading-text">
                 Loading
@@ -684,17 +578,15 @@
                 <div class="loading-bar-fill"></div>
             </div>
         </div>
-
-        <!-- Version -->
         <div class="version-text">v1.0.0</div>
     </div>
 
-    <!-- ========== APP CONTAINER ========== -->
+    <!-- APP CONTAINER -->
     <div id="app-container">
         <iframe id="app-iframe" src="https://script.google.com/macros/s/AKfycbxkGSrbPtL0yxnuOKMoIea6zfnImqO_VsqF6asCb8qUT2dGCNDmZigXqFAk2sodK5bn/exec" allow="clipboard-write"></iframe>
     </div>
 
-    <!-- ========== INSTALL BANNER ========== -->
+    <!-- INSTALL BANNER -->
     <div class="install-banner" id="installBanner">
         <button class="install-banner-close" id="closeBanner">&times;</button>
         <img class="install-banner-icon" src="https://raw.githubusercontent.com/ca-school/feeslipgenerator/refs/heads/main/WhatsApp%20Image%202026-03-28%20at%201.02.14%20PM.jpeg" alt="icon">
@@ -705,71 +597,171 @@
         <button class="install-btn" id="installBtn">Install</button>
     </div>
 
+    <!-- Hidden canvas for icon generation -->
+    <canvas id="iconCanvas" style="display:none;"></canvas>
+
     <script>
+        // ========== ICON GENERATION + MANIFEST ==========
+        const LOGO_URL = 'https://raw.githubusercontent.com/ca-school/feeslipgenerator/refs/heads/main/WhatsApp%20Image%202026-03-28%20at%201.02.14%20PM.jpeg';
+
+        function generatePWAIcons() {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.crossOrigin = 'anonymous';
+
+                img.onload = function () {
+                    const sizes = [192, 512];
+                    const icons = [];
+
+                    sizes.forEach(size => {
+                        const canvas = document.getElementById('iconCanvas');
+                        canvas.width = size;
+                        canvas.height = size;
+                        const ctx = canvas.getContext('2d');
+
+                        // Clear
+                        ctx.clearRect(0, 0, size, size);
+
+                        // Fill background (in case image has transparency)
+                        ctx.fillStyle = '#1a1a2e';
+                        ctx.fillRect(0, 0, size, size);
+
+                        // Calculate crop to make it square (center crop)
+                        const srcSize = Math.min(img.naturalWidth, img.naturalHeight);
+                        const srcX = (img.naturalWidth - srcSize) / 2;
+                        const srcY = (img.naturalHeight - srcSize) / 2;
+
+                        // Draw image centered and covering full canvas
+                        ctx.drawImage(img, srcX, srcY, srcSize, srcSize, 0, 0, size, size);
+
+                        const dataURL = canvas.toDataURL('image/png');
+
+                        // "any" purpose icon
+                        icons.push({
+                            src: dataURL,
+                            sizes: size + 'x' + size,
+                            type: 'image/png',
+                            purpose: 'any'
+                        });
+
+                        // "maskable" purpose icon (with padding)
+                        const canvasM = document.createElement('canvas');
+                        canvasM.width = size;
+                        canvasM.height = size;
+                        const ctxM = canvasM.getContext('2d');
+
+                        // Maskable needs safe zone - 10% padding with bg color
+                        ctxM.fillStyle = '#1a1a2e';
+                        ctxM.fillRect(0, 0, size, size);
+                        const padding = size * 0.1;
+                        const innerSize = size - (padding * 2);
+                        ctxM.drawImage(img, srcX, srcY, srcSize, srcSize, padding, padding, innerSize, innerSize);
+
+                        icons.push({
+                            src: canvasM.toDataURL('image/png'),
+                            sizes: size + 'x' + size,
+                            type: 'image/png',
+                            purpose: 'maskable'
+                        });
+                    });
+
+                    // Also update apple-touch-icon with generated PNG
+                    const apple192 = icons.find(i => i.sizes === '192x192' && i.purpose === 'any');
+                    if (apple192) {
+                        document.getElementById('apple-icon').href = apple192.src;
+                        // Also update favicon
+                        let favicon = document.querySelector('link[rel="icon"]');
+                        if (favicon) favicon.href = apple192.src;
+                    }
+
+                    resolve(icons);
+                };
+
+                img.onerror = function () {
+                    console.warn('Could not load logo for icon generation, using fallback URL');
+                    resolve([
+                        {
+                            src: LOGO_URL,
+                            sizes: '192x192',
+                            type: 'image/jpeg',
+                            purpose: 'any'
+                        },
+                        {
+                            src: LOGO_URL,
+                            sizes: '512x512',
+                            type: 'image/jpeg',
+                            purpose: 'any'
+                        }
+                    ]);
+                };
+
+                img.src = LOGO_URL;
+            });
+        }
+
+        async function setupManifest() {
+            const icons = await generatePWAIcons();
+
+            const manifestData = {
+                name: "Slip Generator",
+                short_name: "Slip Generator",
+                description: "Slip Generator - Powered by Chanakya Academy, Ranjita",
+                start_url: window.location.href.split('?')[0],
+                scope: window.location.href.split('?')[0].replace(/\/[^\/]*$/, '/'),
+                display: "standalone",
+                orientation: "portrait",
+                theme_color: "#1a1a2e",
+                background_color: "#1a1a2e",
+                categories: ["education", "utilities"],
+                icons: icons
+            };
+
+            const blob = new Blob([JSON.stringify(manifestData)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            document.getElementById('manifest-link').setAttribute('href', url);
+
+            console.log('✅ PWA Manifest ready with ' + icons.length + ' icons');
+        }
+
+        // Run manifest setup immediately
+        setupManifest();
+
         // ========== SPLASH SCREEN LOGIC ==========
         const splash = document.getElementById('splash-screen');
         const appContainer = document.getElementById('app-container');
 
-        // Auto-hide splash after animation completes
         setTimeout(() => {
             splash.classList.add('splash-exit');
             setTimeout(() => {
                 splash.style.display = 'none';
                 appContainer.classList.add('show');
-                // Show install banner after app loads
                 setTimeout(showInstallBanner, 2000);
             }, 800);
         }, 4800);
 
-        // ========== PWA MANIFEST (Inline via Blob) ==========
-        const manifestData = {
-            name: "Slip Generator",
-            short_name: "Slip Gen",
-            description: "Slip Generator - Powered by Chanakya Academy, Ranjita",
-            start_url: "./",
-            display: "standalone",
-            orientation: "portrait",
-            theme_color: "#1a1a2e",
-            background_color: "#1a1a2e",
-            icons: [
-                {
-                    src: "https://raw.githubusercontent.com/ca-school/feeslipgenerator/refs/heads/main/WhatsApp%20Image%202026-03-28%20at%201.02.14%20PM.jpeg",
-                    sizes: "192x192",
-                    type: "image/jpeg",
-                    purpose: "any maskable"
-                },
-                {
-                    src: "https://raw.githubusercontent.com/ca-school/feeslipgenerator/refs/heads/main/WhatsApp%20Image%202026-03-28%20at%201.02.14%20PM.jpeg",
-                    sizes: "512x512",
-                    type: "image/jpeg",
-                    purpose: "any maskable"
-                }
-            ]
-        };
-
-        const manifestBlob = new Blob([JSON.stringify(manifestData)], { type: 'application/json' });
-        const manifestURL = URL.createObjectURL(manifestBlob);
-        document.getElementById('manifest-link').setAttribute('href', manifestURL);
-
-        // ========== SERVICE WORKER (Inline via Blob) ==========
-        const swCode = `
-            self.addEventListener('install', e => {
-                self.skipWaiting();
-            });
-            self.addEventListener('activate', e => {
-                e.waitUntil(clients.claim());
-            });
-            self.addEventListener('fetch', e => {
-                e.respondWith(fetch(e.request).catch(() => caches.match(e.request)));
-            });
-        `;
-
+        // ========== SERVICE WORKER ==========
         if ('serviceWorker' in navigator) {
+            const swCode = `
+                const CACHE_NAME = 'slip-gen-v1';
+                self.addEventListener('install', e => {
+                    self.skipWaiting();
+                });
+                self.addEventListener('activate', e => {
+                    e.waitUntil(clients.claim());
+                });
+                self.addEventListener('fetch', e => {
+                    e.respondWith(
+                        fetch(e.request)
+                        .catch(() => caches.match(e.request))
+                    );
+                });
+            `;
             const swBlob = new Blob([swCode], { type: 'application/javascript' });
             const swURL = URL.createObjectURL(swBlob);
-            navigator.serviceWorker.register(swURL).catch(() => {
-                // SW registration might fail with blob URL - that's okay
-                console.log('Service Worker: Using fallback mode');
+            navigator.serviceWorker.register(swURL).then(reg => {
+                console.log('✅ Service Worker registered');
+            }).catch(err => {
+                console.log('SW fallback mode:', err.message);
             });
         }
 
@@ -782,11 +774,12 @@
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             deferredPrompt = e;
+            console.log('✅ Install prompt captured');
         });
 
         function showInstallBanner() {
-            // Show banner if not installed as PWA
-            if (!window.matchMedia('(display-mode: standalone)').matches) {
+            if (!window.matchMedia('(display-mode: standalone)').matches &&
+                !navigator.standalone) {
                 installBanner.classList.add('show');
             }
         }
@@ -795,17 +788,17 @@
             if (deferredPrompt) {
                 deferredPrompt.prompt();
                 const { outcome } = await deferredPrompt.userChoice;
+                console.log('Install outcome:', outcome);
                 if (outcome === 'accepted') {
                     installBanner.classList.remove('show');
                 }
                 deferredPrompt = null;
             } else {
-                // Fallback - show instructions
                 const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
                 if (isIOS) {
-                    alert('📱 To install this app:\n\n1. Tap the Share button (📤)\n2. Tap "Add to Home Screen"\n3. Tap "Add"');
+                    alert('📱 Install karne ke liye:\n\n1. Neeche Share button (📤) dabao\n2. "Add to Home Screen" select karo\n3. "Add" dabao\n\n✅ App aapke home screen par install ho jayega!');
                 } else {
-                    alert('📱 To install this app:\n\n1. Tap the browser menu (⋮)\n2. Tap "Add to Home Screen"\n3. Tap "Add"');
+                    alert('📱 Install karne ke liye:\n\n1. Browser menu (⋮) dabao\n2. "Add to Home Screen" ya "Install App" select karo\n3. "Install" dabao\n\n✅ App aapke home screen par install ho jayega!');
                 }
             }
         });
@@ -814,10 +807,10 @@
             installBanner.classList.remove('show');
         });
 
-        // Hide banner if already installed
         window.addEventListener('appinstalled', () => {
             installBanner.classList.remove('show');
             deferredPrompt = null;
+            console.log('✅ App installed successfully!');
         });
     </script>
 </body>
